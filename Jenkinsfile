@@ -18,6 +18,23 @@ pipeline {
    }
   }
   
+  stage('deploy') {
+   steps {
+      sh "rm -rf oc-build && mkdir -p oc-build/deployments"
+    sh "cp target/*.war oc-build/deployments/ROOT.war"
+    // clean up. keep the image stream
+    sh "oc project mon-projet-de-test"
+    sh "oc delete bc,dc,svc,route -l application=monappliweb -n mon-projet-de-test"
+    // create build. override the exit code since it complains about existing imagestream
+    sh "oc new-build --name=monappliweb --image-stream=jboss-eap70-openshift --binary=true --labels=application=monappliweb -n mon-projet-de-test || true"
+    // build image
+    sh "oc start-build monappliweb --from-dir=oc-build --wait=true -n mon-projet-de-test"
+    // deploy image
+    sh "oc new-app monappliweb:latest -n mon-projet-de-test"
+    sh "oc expose svc/monappliweb -n mon-projet-de-test"
+   }
+  }
+  
   /*stage('build image') {
    steps {
     openshiftBuild bldCfg: "montest2", checkForTriggeredDeployments: 'false',
