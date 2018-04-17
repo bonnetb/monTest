@@ -19,6 +19,7 @@ pipeline {
   }
   
   stage('build image') {
+   steps {
     openshiftBuild bldCfg: "montest2", checkForTriggeredDeployments: 'false',
                    namespace: "montest2-dev", showBuildLogs: 'true',
                    verbose: 'false', waitTime: '', waitUnit: 'sec',
@@ -29,9 +30,8 @@ pipeline {
     /*openshiftTag alias: 'false', destStream: 'tasks', destTag: "${version}.build-${BUILD_NUMBER}",
                  destinationNamespace: 'tasks-dev', namespace: 'tasks-dev',
                  srcStream: 'tasks', srcTag: 'latest', verbose: 'false'*/
+   }
   }
-
-  
   
  }
 }
