@@ -14,7 +14,7 @@ pipeline {
   }
   stage('publish') {
    steps {
-    sh "${mvn} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus3-mon-projet-de-test.apps.sodigital.io/"
+    sh "mvn deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus3-mon-projet-de-test.apps.sodigital.io/"
    }
   }
  }
