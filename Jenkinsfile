@@ -14,5 +14,6 @@ pipeline {
   }
   stage('deploy'){
    openshiftDeploy(deploymentConfig: 'montest3')
+  }
  }
 }
