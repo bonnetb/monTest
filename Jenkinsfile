@@ -12,5 +12,7 @@ pipeline {
     sh 'mvn clean install'
    }
   }
+  stage('deploy'){
+   openshiftDeploy(deploymentConfig: 'montest3')
  }
 }
