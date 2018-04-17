@@ -12,8 +12,8 @@ pipeline {
     sh 'mvn clean install'
    }
   }
-  stage('deploy'){
-   openshiftDeploy(deploymentConfig: 'montest3')
+  stage('publish'){
+   sh "${mvn} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus3-mon-projet-de-test.apps.sodigital.io/"
   }
  }
 }
