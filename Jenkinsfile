@@ -17,6 +17,11 @@ pipeline {
     sh "mvn deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://admin:admin123@nexus3-mon-projet-de-test.apps.sodigital.io/repository/maven-snapshots/ -Dfabric8.mode=openshift fabric8:build"
    }
   }
+   stage('deploy') {
+   steps {
+    sh "mvn fabric8:resource fabric8:deploy"
+   }
+  }
   /*
   stage('deploy') {
    steps {
