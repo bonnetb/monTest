@@ -19,7 +19,7 @@ pipeline {
   }
    stage('deploy') {
    steps {
-    sh "mvn fabric8:resource fabric8:deploy"
+    sh "mvn fabric8:resource fabric8:deploy -Dfabric8.namespace=dev"
    }
   }
   /*
