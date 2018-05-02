@@ -14,7 +14,7 @@ pipeline {
   }
   stage('publish') {
    steps {
-    sh "mvn deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://admin:admin123@nexus3-mon-projet-de-test.apps.sodigital.io/repository/maven-snapshots/ -Dfabric8.mode=openshift fabric8:build fabric8:push"
+    sh "mvn deploy -Ddocker.push.registry=docker-registry.default.svc:5000  -DskipTests=true -DaltDeploymentRepository=nexus::default::http://admin:admin123@nexus3-mon-projet-de-test.apps.sodigital.io/repository/maven-snapshots/ -Dfabric8.mode=openshift fabric8:build fabric8:push"
    }
   }
    stage('deploy') {
