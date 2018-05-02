@@ -24,7 +24,7 @@ pipeline {
   }
   stage('promote to qual') {
    steps {
-    sh "mvn fabric8:json fabric8:resource-apply -Dfabric8.namespace=dev"
+    sh "mvn  fabric8:apply -Dfabric8.namespace=dev"
    }
   }
   /*
