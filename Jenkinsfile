@@ -29,10 +29,11 @@ pipeline {
   }
   stage('promote to qual') {
    steps {
-    sh "mvn fabric8:apply -Dfabric8.namespace=dev"
+    /*sh "mvn fabric8:apply -Dfabric8.namespace=dev"*/
+    input 'Déployer en qualif ?'
    }
   }
-   stage('publish-to-docker-register-dev') {
+  stage('publish-to-docker-register-dev') {
    steps {
     sh "mvn -Ddocker.push.registry=docker-registry.default.svc:5000 -DaltDeploymentRepository=nexus::default::http://admin:admin123@nexus3-mon-projet-de-test.apps.sodigital.io/repository/maven-snapshots/ -Dfabric8.mode=openshift -Dfabric8.namespace=dev fabric8:build"
    }
