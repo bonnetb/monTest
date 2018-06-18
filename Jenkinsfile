@@ -3,7 +3,7 @@ pipeline {
   label 'maven'
  }
  options {
-  buildDiscarder(logRotator(numToKeepStr: '3'))
+  buildDiscarder(logRotator(numToKeepStr: '5'))
 }
  stages {
   stage('build') {
