@@ -19,7 +19,7 @@ pipeline {
   }
   stage('publish-to-docker-register') {
    steps {
-    sh "mvn -DaltDeploymentRepository=nexus::default::http://admin:admin123@nexus3-mon-projet-de-test.apps.sodigital.io/repository/maven-snapshots/ -Dfabric8.mode=openshift fabric8:build"
+    sh "mvn -Ddocker.push.registry=docker-registry.default.svc:5000 -DaltDeploymentRepository=nexus::default::http://admin:admin123@nexus3-mon-projet-de-test.apps.sodigital.io/repository/maven-snapshots/ -Dfabric8.mode=openshift fabric8:build"
    }
   }
    stage('deploy') {
