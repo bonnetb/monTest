@@ -32,6 +32,11 @@ pipeline {
     sh "mvn  fabric8:apply -Dfabric8.namespace=dev"
    }
   }
+   stage('publish-to-docker-register') {
+   steps {
+    sh "mvn -Ddocker.push.registry=docker-registry.default.svc:5000 -DaltDeploymentRepository=nexus::default::http://admin:admin123@nexus3-mon-projet-de-test.apps.sodigital.io/repository/maven-snapshots/ -Dfabric8.mode=openshift -Dfabric8.namespace=dev fabric8:build"
+   }
+  }
   /*
   stage('deploy') {
    steps {
