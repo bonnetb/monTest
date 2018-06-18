@@ -30,6 +30,7 @@ pipeline {
   stage('promote to qual') {
    steps {
     /*sh "mvn fabric8:apply -Dfabric8.namespace=dev"*/
+    milestone label: 'milestone'
     input 'Déployer en qualif ?'
    }
   }
