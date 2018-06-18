@@ -14,7 +14,7 @@ pipeline {
   }
   stage('publish-to-nexus') {
    steps {
-    sh "mvn deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://admin:admin123@nexus3-mon-projet-de-test.apps.sodigital.io/repository/maven-snapshots/"
+    sh "mvn deploy -DaltDeploymentRepository=nexus::default::http://admin:admin123@nexus3-mon-projet-de-test.apps.sodigital.io/repository/maven-snapshots/"
    }
   }
   stage('publish-to-docker-register') {
