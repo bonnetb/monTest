@@ -80,6 +80,5 @@ pipeline {
                  srcStream: 'tasks', srcTag: 'latest', verbose: 'false'*/
  /*  }
   }*/
-  
  }
 }
