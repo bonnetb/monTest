@@ -24,7 +24,7 @@ pipeline {
   }
   stage('create dev config map') {
    steps {
-    sh "oc create configmap config --from-file=dev.properties -n dev -o yaml --dry-run | oc apply -f -"
+    sh "oc create configmap config --from-file=dev.properties -n mon-projet-de-test -o yaml --dry-run | oc apply -f -"
    }
   }
   stage('deploy') {
