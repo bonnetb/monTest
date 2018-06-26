@@ -34,6 +34,11 @@ pipeline {
     input 'Déployer en qualif ?'
    }
   }
+  stage('create config map') {
+   steps {
+    sh "oc create configmap config --from-file=qual.properties -o yaml --dry-run | oc apply -f -"
+   }
+  }
   stage('publish-to-docker-register-dev') {
    steps {
     sh "mvn -Ddocker.push.registry=docker-registry.default.svc:5000 -DaltDeploymentRepository=nexus::default::http://admin:admin123@nexus3-mon-projet-de-test.apps.sodigital.io/repository/maven-snapshots/ -Dfabric8.mode=openshift -Dfabric8.namespace=dev fabric8:build"
