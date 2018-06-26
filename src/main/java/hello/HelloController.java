@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Value;
 @RestController
 public class HelloController {
-    @Value("#{systemProperties['qui'] ?: 'Inconnu'}")
+    @Value("${qui}")
     private String qui;
     
     @RequestMapping("/")
