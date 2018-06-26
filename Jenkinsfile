@@ -41,7 +41,7 @@ pipeline {
   }
   stage('create qual config map') {
    steps {
-    sh "oc create configmap config --from-file=qual.properties -n dev -o yaml --dry-run | oc apply -f -"
+    sh "oc create configmap config --from-file=qual.properties -n dev -o yaml --dry-run | oc apply -f -n dev -"
    }
   }
   stage('publish-to-docker-register-dev') {
