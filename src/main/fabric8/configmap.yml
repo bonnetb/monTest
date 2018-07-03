@@ -1,0 +1,5 @@
+data:
+  application.properties: |
+    # spring application properties file
+    qui = toto
+    quand = aujourd'hui
