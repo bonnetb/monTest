@@ -27,11 +27,13 @@ pipeline {
     sh "oc create configmap config --from-file=dev.properties -n mon-projet-de-test -o yaml --dry-run | oc apply -f -"
    }
   }
+/*  
   stage('deploy') {
    steps {
     sh "mvn fabric8:resource fabric8:deploy"
    }
   }
+  */
   stage('promote to qual') {
    steps {
     /*sh "mvn fabric8:apply -Dfabric8.namespace=dev"*/
